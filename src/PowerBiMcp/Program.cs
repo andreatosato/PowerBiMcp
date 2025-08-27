@@ -6,7 +6,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.PowerBI.Api;
 using Microsoft.Rest;
-using PowerBiMcp.Tools;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -42,6 +41,6 @@ builder.Services.AddScoped<IPowerBIClient, PowerBIClient>(sp =>
 builder.Services
     .AddMcpServer()
     .WithStdioServerTransport()
-    .WithTools<DatasetTools>();
+    .WithToolsFromAssembly();
 
 await builder.Build().RunAsync();
