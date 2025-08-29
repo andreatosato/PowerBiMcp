@@ -1,0 +1,14 @@
+{
+	"servers": {
+		"powerbi-mcp": {
+			"type": "stdio",
+			"command": "dotnet",
+			"args": [
+				"run",
+				"--project",
+				"C:\\DevOps\\github\\PowerBiMcp\\src\\PowerBiMcp"
+			]
+		}
+	},
+	"inputs": []
+}

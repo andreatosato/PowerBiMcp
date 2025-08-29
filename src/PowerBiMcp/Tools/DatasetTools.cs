@@ -7,7 +7,7 @@ using System.Text.Json;
 
 namespace PowerBiMcp.Tools;
 
-public class DatasetTools
+internal class DatasetTools
 {
     private readonly IPowerBIClient _powerBIClient;
 
