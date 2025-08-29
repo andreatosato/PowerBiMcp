@@ -22,10 +22,6 @@ builder.Services.AddScoped<IPowerBIClient, PowerBIClient>(sp =>
     var clientId = configuration["AzureAd:ClientId"];
     var clientSecret = configuration["AzureAd:ClientSecret"];
 
-    //var tenantId = "214cc121-4ce0-4752-953b-40fd8801626b";
-    //var clientId = "5bf580c6-201a-4aa5-a65e-335b3e898a11";
-    //var clientSecret = "S7U8Q~aAFl~fLJ45V~rT8Wm-Cmmkccvq7VSqLbrj";
-
     // Create credential for authentication
     var credential = new ClientSecretCredential(tenantId, clientId, clientSecret);
 
