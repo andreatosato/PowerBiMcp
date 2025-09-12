@@ -59,4 +59,37 @@ internal class DatasetTools
         }
     }
 
+    [McpServerTool]
+    [Description("Execute a DAX query on a specific dataset.")]
+    public TextContent ExecuteDaxQuery(
+        [Description("The ID of the workspace")] string workspace_id,
+        [Description("The ID of the dataset")] string dataset_id,
+        [Description("The DAX query to execute")] string dax_query
+    )
+    {
+        try
+        {
+            var queryRequest = new Microsoft.PowerBI.Api.Models.DatasetExecuteQueriesRequest
+            {
+                Queries =
+                [
+                    new Microsoft.PowerBI.Api.Models.DatasetExecuteQueriesQuery
+                    {
+                        Query = dax_query
+                    }
+                ]
+            };
+
+            var result = _powerBIClient.Datasets.ExecuteQueries(Guid.Parse(workspace_id), dataset_id, queryRequest);
+            return new TextContent(JsonSerializer.Serialize(result));
+        }
+        catch (HttpOperationException ex)
+        {
+            return new TextContent($"Error executing DAX query: {ex.Message}\nResponse: {ex.Response?.Content}");
+        }
+        catch (Exception ex)
+        {
+            return new TextContent($"Error executing DAX query: {ex.Message}");
+        }
+    }
 }
